@@ -1,0 +1,20 @@
+C:\Users\Dawid Czuba\Desktop\puzzleagriculture\puzzle\obj\Debug\puzzle.csprojAssemblyReference.cache
+C:\Users\Dawid Czuba\Desktop\puzzleagriculture\puzzle\obj\Debug\puzzle.Properties.Resources.resources
+C:\Users\Dawid Czuba\Desktop\puzzleagriculture\puzzle\obj\Debug\puzzle.csproj.GenerateResource.cache
+C:\Users\Dawid Czuba\Desktop\puzzleagriculture\puzzle\obj\Debug\puzzle.csproj.CoreCompileInputs.cache
+C:\Users\Dawid Czuba\Desktop\puzzleagriculture\puzzle\bin\Debug\puzzle.exe.config
+C:\Users\Dawid Czuba\Desktop\puzzleagriculture\puzzle\bin\Debug\puzzle.exe
+C:\Users\Dawid Czuba\Desktop\puzzleagriculture\puzzle\bin\Debug\puzzle.pdb
+C:\Users\Dawid Czuba\Desktop\puzzleagriculture\puzzle\obj\Debug\puzzle.exe
+C:\Users\Dawid Czuba\Desktop\puzzleagriculture\puzzle\obj\Debug\puzzle.pdb
+C:\Users\Dawid Czuba\Desktop\puzzleagriculture\puzzle\obj\Debug\puzzle.frmPuzzleGame.resources
+C:\Users\Dawid Czuba\Desktop\projekt puzzle\puzzle\obj\Debug\puzzle.csprojAssemblyReference.cache
+C:\Users\Dawid Czuba\Desktop\projekt puzzle\puzzle\obj\Debug\puzzle.frmPuzzleGame.resources
+C:\Users\Dawid Czuba\Desktop\projekt puzzle\puzzle\obj\Debug\puzzle.Properties.Resources.resources
+C:\Users\Dawid Czuba\Desktop\projekt puzzle\puzzle\obj\Debug\puzzle.csproj.GenerateResource.cache
+C:\Users\Dawid Czuba\Desktop\projekt puzzle\puzzle\obj\Debug\puzzle.csproj.CoreCompileInputs.cache
+C:\Users\Dawid Czuba\Desktop\projekt puzzle\puzzle\obj\Debug\puzzle.exe
+C:\Users\Dawid Czuba\Desktop\projekt puzzle\puzzle\obj\Debug\puzzle.pdb
+C:\Users\Dawid Czuba\Desktop\projekt puzzle\puzzle\bin\Debug\puzzle.exe.config
+C:\Users\Dawid Czuba\Desktop\projekt puzzle\puzzle\bin\Debug\puzzle.exe
+C:\Users\Dawid Czuba\Desktop\projekt puzzle\puzzle\bin\Debug\puzzle.pdb
