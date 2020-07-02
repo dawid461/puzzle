@@ -30,12 +30,12 @@ namespace puzzle
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmPuzzleGame));
             this.gbOriginal = new System.Windows.Forms.GroupBox();
             this.btnShuffle = new System.Windows.Forms.Button();
             this.btnPause = new System.Windows.Forms.Button();
             this.btnQuit = new System.Windows.Forms.Button();
-            this.lblTimeElapsed = new System.Windows.Forms.Label();
             this.lblMovesMade = new System.Windows.Forms.Label();
             this.gbPuzzleBox = new System.Windows.Forms.GroupBox();
             this.pbx1 = new System.Windows.Forms.PictureBox();
@@ -47,6 +47,8 @@ namespace puzzle
             this.pbx7 = new System.Windows.Forms.PictureBox();
             this.pbx8 = new System.Windows.Forms.PictureBox();
             this.pbx9 = new System.Windows.Forms.PictureBox();
+            this.lblTimeElapsed = new System.Windows.Forms.Label();
+            this.tmrTimeElapse = new System.Windows.Forms.Timer(this.components);
             this.gbPuzzleBox.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbx1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbx2)).BeginInit();
@@ -80,6 +82,7 @@ namespace puzzle
             this.btnShuffle.TabIndex = 3;
             this.btnShuffle.Text = "Shuffle";
             this.btnShuffle.UseVisualStyleBackColor = false;
+            this.btnShuffle.Click += new System.EventHandler(this.btnShuffle_Click);
             // 
             // btnPause
             // 
@@ -90,6 +93,7 @@ namespace puzzle
             this.btnPause.TabIndex = 6;
             this.btnPause.Text = "Pause";
             this.btnPause.UseVisualStyleBackColor = true;
+            this.btnPause.Click += new System.EventHandler(this.PauseOrResume);
             // 
             // btnQuit
             // 
@@ -101,16 +105,7 @@ namespace puzzle
             this.btnQuit.TabIndex = 5;
             this.btnQuit.Text = "Quit";
             this.btnQuit.UseVisualStyleBackColor = false;
-            // 
-            // lblTimeElapsed
-            // 
-            this.lblTimeElapsed.AutoSize = true;
-            this.lblTimeElapsed.Font = new System.Drawing.Font("Impact", 48F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblTimeElapsed.Location = new System.Drawing.Point(619, 398);
-            this.lblTimeElapsed.Name = "lblTimeElapsed";
-            this.lblTimeElapsed.Size = new System.Drawing.Size(264, 80);
-            this.lblTimeElapsed.TabIndex = 8;
-            this.lblTimeElapsed.Text = "00:00:00";
+            this.btnQuit.Click += new System.EventHandler(this.btnQuit_Click);
             // 
             // lblMovesMade
             // 
@@ -119,9 +114,9 @@ namespace puzzle
             this.lblMovesMade.ForeColor = System.Drawing.SystemColors.Highlight;
             this.lblMovesMade.Location = new System.Drawing.Point(188, 522);
             this.lblMovesMade.Name = "lblMovesMade";
-            this.lblMovesMade.Size = new System.Drawing.Size(118, 19);
+            this.lblMovesMade.Size = new System.Drawing.Size(158, 19);
             this.lblMovesMade.TabIndex = 9;
-            this.lblMovesMade.Text = "Moves Made : ";
+            this.lblMovesMade.Text = "Wykonane Ruchy : ";
             // 
             // gbPuzzleBox
             // 
@@ -149,6 +144,7 @@ namespace puzzle
             this.pbx1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pbx1.TabIndex = 0;
             this.pbx1.TabStop = false;
+            this.pbx1.Click += new System.EventHandler(this.SwitchPictureBox);
             // 
             // pbx2
             // 
@@ -158,6 +154,7 @@ namespace puzzle
             this.pbx2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pbx2.TabIndex = 0;
             this.pbx2.TabStop = false;
+            this.pbx2.Click += new System.EventHandler(this.SwitchPictureBox);
             // 
             // pbx3
             // 
@@ -167,6 +164,7 @@ namespace puzzle
             this.pbx3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pbx3.TabIndex = 0;
             this.pbx3.TabStop = false;
+            this.pbx3.Click += new System.EventHandler(this.SwitchPictureBox);
             // 
             // pbx4
             // 
@@ -176,6 +174,7 @@ namespace puzzle
             this.pbx4.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pbx4.TabIndex = 0;
             this.pbx4.TabStop = false;
+            this.pbx4.Click += new System.EventHandler(this.SwitchPictureBox);
             // 
             // pbx5
             // 
@@ -185,6 +184,7 @@ namespace puzzle
             this.pbx5.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pbx5.TabIndex = 0;
             this.pbx5.TabStop = false;
+            this.pbx5.Click += new System.EventHandler(this.SwitchPictureBox);
             // 
             // pbx6
             // 
@@ -194,6 +194,7 @@ namespace puzzle
             this.pbx6.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pbx6.TabIndex = 0;
             this.pbx6.TabStop = false;
+            this.pbx6.Click += new System.EventHandler(this.SwitchPictureBox);
             // 
             // pbx7
             // 
@@ -203,6 +204,7 @@ namespace puzzle
             this.pbx7.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pbx7.TabIndex = 0;
             this.pbx7.TabStop = false;
+            this.pbx7.Click += new System.EventHandler(this.SwitchPictureBox);
             // 
             // pbx8
             // 
@@ -212,6 +214,7 @@ namespace puzzle
             this.pbx8.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pbx8.TabIndex = 0;
             this.pbx8.TabStop = false;
+            this.pbx8.Click += new System.EventHandler(this.SwitchPictureBox);
             // 
             // pbx9
             // 
@@ -221,20 +224,38 @@ namespace puzzle
             this.pbx9.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pbx9.TabIndex = 0;
             this.pbx9.TabStop = false;
+            this.pbx9.Click += new System.EventHandler(this.SwitchPictureBox);
+            // 
+            // lblTimeElapsed
+            // 
+            this.lblTimeElapsed.AutoSize = true;
+            this.lblTimeElapsed.Font = new System.Drawing.Font("Impact", 48F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblTimeElapsed.Location = new System.Drawing.Point(589, 382);
+            this.lblTimeElapsed.Name = "lblTimeElapsed";
+            this.lblTimeElapsed.Size = new System.Drawing.Size(264, 80);
+            this.lblTimeElapsed.TabIndex = 11;
+            this.lblTimeElapsed.Text = "00:00:00";
+            // 
+            // tmrTimeElapse
+            // 
+            this.tmrTimeElapse.Enabled = true;
+            this.tmrTimeElapse.Interval = 900;
+            this.tmrTimeElapse.Tick += new System.EventHandler(this.UpdateTimeElapsed);
             // 
             // frmPuzzleGame
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(941, 593);
+            this.Controls.Add(this.lblTimeElapsed);
             this.Controls.Add(this.gbPuzzleBox);
             this.Controls.Add(this.lblMovesMade);
-            this.Controls.Add(this.lblTimeElapsed);
             this.Controls.Add(this.btnPause);
             this.Controls.Add(this.btnQuit);
             this.Controls.Add(this.btnShuffle);
             this.Controls.Add(this.gbOriginal);
             this.Name = "frmPuzzleGame";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Puzzle Game";
             this.Load += new System.EventHandler(this.Form1_Load);
             this.gbPuzzleBox.ResumeLayout(false);
@@ -262,7 +283,6 @@ namespace puzzle
         private System.Windows.Forms.Button btnShuffle;
         private System.Windows.Forms.Button btnPause;
         private System.Windows.Forms.Button btnQuit;
-        private System.Windows.Forms.Label lblTimeElapsed;
         private System.Windows.Forms.Label lblMovesMade;
         private System.Windows.Forms.GroupBox gbPuzzleBox;
         private System.Windows.Forms.PictureBox pbx1;
@@ -274,6 +294,8 @@ namespace puzzle
         private System.Windows.Forms.PictureBox pbx7;
         private System.Windows.Forms.PictureBox pbx8;
         private System.Windows.Forms.PictureBox pbx9;
+        private System.Windows.Forms.Label lblTimeElapsed;
+        private System.Windows.Forms.Timer tmrTimeElapse;
     }
 }
 
