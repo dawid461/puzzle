@@ -71,6 +71,7 @@ namespace puzzle
             this.gbOriginal.TabIndex = 2;
             this.gbOriginal.TabStop = false;
             this.gbOriginal.Text = "Original Image";
+            this.gbOriginal.Enter += new System.EventHandler(this.gbOriginal_Enter);
             // 
             // btnShuffle
             // 

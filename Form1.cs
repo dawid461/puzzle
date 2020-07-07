@@ -12,13 +12,15 @@ namespace puzzle
         List<Bitmap> lstOriginalPictureList = new List<Bitmap>();
         System.Diagnostics.Stopwatch timer = new System.Diagnostics.Stopwatch();
 
+
         public frmPuzzleGame()
         {
             InitializeComponent();
-            lstOriginalPictureList.AddRange(new Bitmap[] { Properties.Resources._1, Properties.Resources._2, Properties.Resources._3, Properties.Resources._4, Properties.Resources._5, Properties.Resources._6, Properties.Resources._7, Properties.Resources._8, Properties.Resources._9, Properties.Resources._null}); //robienie bitmapy dla 9 obrazków w aplikacji
+            lstOriginalPictureList.AddRange(new Bitmap[] { Properties.Resources._1, Properties.Resources._2, Properties.Resources._3, Properties.Resources._4, Properties.Resources._5, Properties.Resources._6, Properties.Resources._7, Properties.Resources._8, Properties.Resources._9, Properties.Resources._null}); //tworzenie bitmapy dla 9 obrazków w aplikacji
             lblMovesMade.Text += inmoves;       //odliczanie klikniec w obrazki podczas prób dopasowania
             lblTimeElapsed.Text = "00:00:00"; //start zegara po kliknieciu w obrazek
         }
+
 
         //--------------------------------------Rozpoczecie gry od nowa i pomieszanie obrazków----------------------------------------------------------------------------------------------------------
         private void Form1_Load(object sender, EventArgs e)
@@ -48,7 +50,7 @@ namespace puzzle
             {
                 YesOrNo = MessageBox.Show("Czy na pewno chcesz zrestartowac gre?", "Tractor Puzzle", MessageBoxButtons.YesNo, MessageBoxIcon.Question); 
             }
-            if(YesOrNo == DialogResult.Yes || lblTimeElapsed.Text == "00:00:00") //po wybraniu opcji, tak na powyzsze pytanie następuję przypisanie poczatkowej wartości do pola ,,wykonane ruchy" i zegaru
+            if(YesOrNo == DialogResult.Yes || lblTimeElapsed.Text == "00:00:00") //po wybraniu opcji ,,tak" na powyzsze pytanie następuję przypisanie poczatkowej wartości do pola ,,wykonane ruchy: 0" i zegaru na wartość ,,00:00:00:"
             {
                 Shuffle();
                 timer.Reset();
@@ -57,15 +59,15 @@ namespace puzzle
                 lblMovesMade.Text = "Wykonane Ruchy : 0";
             }
         }
-        //-------------------------------------------WYJŚCIE-------------------------------------------------------------------------------------------
+        //-------------------------------------------WYJŚCIE Z GRY-------------------------------------------------------------------------------------------
         private void AskPermissionBeforeQuite(object sender, FormClosingEventArgs e) 
         {
-            DialogResult YesOrNO = MessageBox.Show("Czy na pewno chcesz wyjść?", "Tractor Puzzle",MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-            if (sender as Button != btnQuit && YesOrNO == DialogResult.No) e.Cancel = true;
-            if (sender as Button == btnQuit && YesOrNO == DialogResult.Yes) Environment.Exit(0);
+            DialogResult YesOrNO = MessageBox.Show("Czy na pewno chcesz wyjść?", "Tractor Puzzle",MessageBoxButtons.YesNo, MessageBoxIcon.Question); //po naciśnieciu przycisku quit pojawia sie okienko z zapytaniem oraz dwiema odpowiedziami
+            if (sender as Button != btnQuit && YesOrNO == DialogResult.No) e.Cancel = true; //jesli wybierzesz opcje ,,NIE" nie opuścisz gry
+            if (sender as Button == btnQuit && YesOrNO == DialogResult.Yes) Environment.Exit(0); //jesli wybierzesz opcje ,,TAK" opuścisz gre
         }
 
-        private void btnQuit_Click(object sender, EventArgs e)
+        private void btnQuit_Click(object sender, EventArgs e)//funkcja stworzona do przycisku quit  z wywołaniem funkcji wyżej
         {
             AskPermissionBeforeQuite(sender, e as FormClosingEventArgs);            
         }
@@ -132,6 +134,12 @@ namespace puzzle
                 Shuffle();
             }
         }
+
+        private void gbOriginal_Enter(object sender, EventArgs e)
+        {
+
+        }
+
         //--------------------------------------WSTRZYMANIE PROGRAMU I WZNOWIENIE----------------------------------------------------------------------------------------------------------
         private void PauseOrResume(object sender, EventArgs e)
         {
