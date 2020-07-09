@@ -22,7 +22,7 @@ namespace puzzle
         }
 
 
-        //--------------------------------------Rozpoczecie gry od nowa i pomieszanie obrazków----------------------------------------------------------------------------------------------------------
+        //--------------------------------------Rozpoczecie gry od nowa i pomieszanie obrazków--------------------------------------------------------------------------------------------------------------------- 
         private void Form1_Load(object sender, EventArgs e)
         {
             Shuffle(); //wywołanie funkcji shuffle
@@ -59,7 +59,7 @@ namespace puzzle
                 lblMovesMade.Text = "Wykonane Ruchy : 0";
             }
         }
-        //-------------------------------------------WYJŚCIE Z GRY-------------------------------------------------------------------------------------------
+        //-------------------------------------------WYJŚCIE Z GRY------------------------------------------------------------------------------------------------------------------------------------
         private void AskPermissionBeforeQuite(object sender, FormClosingEventArgs e) 
         {
             DialogResult YesOrNO = MessageBox.Show("Czy na pewno chcesz wyjść?", "Tractor Puzzle",MessageBoxButtons.YesNo, MessageBoxIcon.Question); //po naciśnieciu przycisku quit pojawia sie okienko z zapytaniem oraz dwiema odpowiedziami
@@ -67,28 +67,28 @@ namespace puzzle
             if (sender as Button == btnQuit && YesOrNO == DialogResult.Yes) Environment.Exit(0); //jesli wybierzesz opcje ,,TAK" opuścisz gre
         }
 
-        private void btnQuit_Click(object sender, EventArgs e)//funkcja stworzona do przycisku quit  z wywołaniem funkcji wyżej
+        private void btnQuit_Click(object sender, EventArgs e)//funkcja stworzona do przycisku quit  z wywołaniem funkcji, która znajduję się powyżej
         {
             AskPermissionBeforeQuite(sender, e as FormClosingEventArgs);            
         }
-        //----------------------------------------------------------------RUCH OBRAZKOW--------------------------------------------------------------------------------
+        //----------------------------------------------------------------RUCH OBRAZKOW---------------------------------------------------------------------------------------------------------------
         private void SwitchPictureBox(object sender, EventArgs e)
         {
-            if (lblTimeElapsed.Text == "00:00:00")
+            if (lblTimeElapsed.Text == "00:00:00") //po przesunięci obrazka następuje rozpoczęcie odliczania czasu
                 timer.Start();
             int inPictureBoxIndex = gbPuzzleBox.Controls.IndexOf(sender as Control);
             if(inNullSliceIndex != inPictureBoxIndex)
             {
-                List<int> FourBrothers = new List<int>(new int[] { ((inPictureBoxIndex % 3 == 0) ? -1 : inPictureBoxIndex - 1), inPictureBoxIndex - 3, (inPictureBoxIndex % 3 == 2) ? -1 : inPictureBoxIndex + 1, inPictureBoxIndex + 3 });
+                List<int> FourBrothers = new List<int>(new int[] { ((inPictureBoxIndex % 3 == 0) ? -1 : inPictureBoxIndex - 1), inPictureBoxIndex - 3, (inPictureBoxIndex % 3 == 2) ? -1 : inPictureBoxIndex + 1, inPictureBoxIndex + 3 });//przesuwanie obrazków
                 if (FourBrothers.Contains(inNullSliceIndex))
                 {
                     ((PictureBox)gbPuzzleBox.Controls[inNullSliceIndex]).Image = ((PictureBox)gbPuzzleBox.Controls[inPictureBoxIndex]).Image;
                     ((PictureBox)gbPuzzleBox.Controls[inPictureBoxIndex]).Image = lstOriginalPictureList[9];
                     inNullSliceIndex = inPictureBoxIndex;
-                    lblMovesMade.Text = "Wykonane Ruchy : " + (++inmoves);
+                    lblMovesMade.Text = "Wykonane Ruchy : " + (++inmoves);//liczenie przesunięć puzzli
                     if(CheckWin())
                     {
-                        timer.Stop();
+                        timer.Stop(); //zatrzymanie liczenie czasu po ułożeniu puzzli
                         (gbPuzzleBox.Controls[8] as PictureBox).Image = lstOriginalPictureList[8];
                         MessageBox.Show("Gratulacje... \n Udalo ci sie ulozyc puzzle\n czas jaki uplynal:  " + timer.Elapsed.ToString().Remove(8) + "\nLaczna liczba wykonanych ruchow: " + inmoves, "Tractor Puzzle");
                         inmoves = 0;
@@ -104,7 +104,7 @@ namespace puzzle
         }
 
 
-        // ------------------------------------------------------------------------------------------------------------------------------------------------
+        // -----------------------------------------warunek sprawdzający czy użytkownik ułożył puzzle-----------------------------------------------------------------------------------------------------------------
         bool CheckWin()
         {
             int i;
@@ -115,15 +115,16 @@ namespace puzzle
             if (i == 8) return true;
             else return false;
         }
+        //------------------------------------------------Funkcja dotycząca odliczania czas--------------------------------------------------------------------------------------------------------------------------
         private void UpdateTimeElapsed(object sender, EventArgs e)
         {
             if (timer.Elapsed.ToString() != "00:00:00")
                 lblTimeElapsed.Text = timer.Elapsed.ToString().Remove(8);
-            if (timer.Elapsed.ToString() == "00:00:00")
+            if (timer.Elapsed.ToString() == "00:00:00")//przycisk ,,wstrzymaj" nie jest dostępny dopóki gracz nie rozpocznie gry
                 btnPause.Enabled = false;
             else
                 btnPause.Enabled = true;
-            if (timer.Elapsed.Minutes.ToString() == "1")
+            if (timer.Elapsed.Minutes.ToString() == "2")//jeśli czas gry przekroczy 2 minuty to następuje koniec gry
             {
                 timer.Reset();
                 lblMovesMade.Text = "Wykonane Ruchy : 0";
@@ -135,28 +136,23 @@ namespace puzzle
             }
         }
 
-        private void gbOriginal_Enter(object sender, EventArgs e)
-        {
-
-        }
-
-        //--------------------------------------WSTRZYMANIE PROGRAMU I WZNOWIENIE----------------------------------------------------------------------------------------------------------
+        //--------------------------------------WSTRZYMANIE PROGRAMU I WZNOWIENIE---------------------------------------------------------------------------------------------------------------------------------
         private void PauseOrResume(object sender, EventArgs e)
         {
-            if (btnPause.Text == "Pause")
+            if (btnPause.Text == "Wstrzymaj")//po naciśnięciu przycisku ,,wstrzymaj" następuje ukrycie go i pojawienie się przycisku ,,Wznów" oraz czas zatrzymuje się czas
             {
                 timer.Stop();
                 gbPuzzleBox.Visible = false;
-                btnPause.Text = "Resume";
+                btnPause.Text = "Wznów";
             }
-            else
+            else//po naciśnięciu przycisku ,,Wznów" następuje pojawienie się przycisku ,,Wstrzymaj" i wznowienie czasu
             {
                 timer.Start();
                 gbPuzzleBox.Visible = true;
-                btnPause.Text = "Pause";
+                btnPause.Text = "Wstrzymaj";
             }
         }
-
+         
 
 
 

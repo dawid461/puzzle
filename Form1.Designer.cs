@@ -49,6 +49,7 @@ namespace puzzle
             this.pbx9 = new System.Windows.Forms.PictureBox();
             this.lblTimeElapsed = new System.Windows.Forms.Label();
             this.tmrTimeElapse = new System.Windows.Forms.Timer(this.components);
+            this.richTextBox1 = new System.Windows.Forms.RichTextBox();
             this.gbPuzzleBox.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbx1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbx2)).BeginInit();
@@ -71,7 +72,6 @@ namespace puzzle
             this.gbOriginal.TabIndex = 2;
             this.gbOriginal.TabStop = false;
             this.gbOriginal.Text = "Original Image";
-            this.gbOriginal.Enter += new System.EventHandler(this.gbOriginal_Enter);
             // 
             // btnShuffle
             // 
@@ -81,7 +81,7 @@ namespace puzzle
             this.btnShuffle.Name = "btnShuffle";
             this.btnShuffle.Size = new System.Drawing.Size(105, 62);
             this.btnShuffle.TabIndex = 3;
-            this.btnShuffle.Text = "Shuffle";
+            this.btnShuffle.Text = "Restart";
             this.btnShuffle.UseVisualStyleBackColor = false;
             this.btnShuffle.Click += new System.EventHandler(this.btnShuffle_Click);
             // 
@@ -92,7 +92,7 @@ namespace puzzle
             this.btnPause.Name = "btnPause";
             this.btnPause.Size = new System.Drawing.Size(98, 62);
             this.btnPause.TabIndex = 6;
-            this.btnPause.Text = "Pause";
+            this.btnPause.Text = "Wstrzymaj";
             this.btnPause.UseVisualStyleBackColor = true;
             this.btnPause.Click += new System.EventHandler(this.PauseOrResume);
             // 
@@ -104,7 +104,7 @@ namespace puzzle
             this.btnQuit.Name = "btnQuit";
             this.btnQuit.Size = new System.Drawing.Size(86, 62);
             this.btnQuit.TabIndex = 5;
-            this.btnQuit.Text = "Quit";
+            this.btnQuit.Text = "Wyjście";
             this.btnQuit.UseVisualStyleBackColor = false;
             this.btnQuit.Click += new System.EventHandler(this.btnQuit_Click);
             // 
@@ -243,11 +243,20 @@ namespace puzzle
             this.tmrTimeElapse.Interval = 900;
             this.tmrTimeElapse.Tick += new System.EventHandler(this.UpdateTimeElapsed);
             // 
+            // richTextBox1
+            // 
+            this.richTextBox1.Location = new System.Drawing.Point(603, 45);
+            this.richTextBox1.Name = "richTextBox1";
+            this.richTextBox1.Size = new System.Drawing.Size(268, 21);
+            this.richTextBox1.TabIndex = 12;
+            this.richTextBox1.Text = "Podaj tutaj swój nick jeśli chcesz";
+            // 
             // frmPuzzleGame
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(941, 593);
+            this.Controls.Add(this.richTextBox1);
             this.Controls.Add(this.lblTimeElapsed);
             this.Controls.Add(this.gbPuzzleBox);
             this.Controls.Add(this.lblMovesMade);
@@ -297,6 +306,7 @@ namespace puzzle
         private System.Windows.Forms.PictureBox pbx9;
         private System.Windows.Forms.Label lblTimeElapsed;
         private System.Windows.Forms.Timer tmrTimeElapse;
+        private System.Windows.Forms.RichTextBox richTextBox1;
     }
 }
 
